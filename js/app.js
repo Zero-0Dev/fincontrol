@@ -361,6 +361,77 @@
 
             // Google Sheets sync listeners
             this.setupSyncListeners();
+
+            // CSV Import listeners
+            this.setupCSVImport();
+        },
+
+        setupCSVImport() {
+            const dropZone = document.getElementById('csv-drop-zone');
+            const fileInput = document.getElementById('csv-file-input');
+            const resultDiv = document.getElementById('csv-import-result');
+            if (!dropZone || !fileInput) return;
+
+            // Click to select
+            dropZone.addEventListener('click', () => fileInput.click());
+
+            // Drag and drop
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.style.borderColor = 'var(--accent-primary)';
+                dropZone.style.background = 'var(--accent-primary-muted)';
+            });
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.style.borderColor = 'var(--border)';
+                dropZone.style.background = '';
+            });
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.style.borderColor = 'var(--border)';
+                dropZone.style.background = '';
+                if (e.dataTransfer.files.length > 0) {
+                    this.processCSVFiles(e.dataTransfer.files, resultDiv);
+                }
+            });
+
+            // File input change
+            fileInput.addEventListener('change', () => {
+                if (fileInput.files.length > 0) {
+                    this.processCSVFiles(fileInput.files, resultDiv);
+                    fileInput.value = ''; // Reset
+                }
+            });
+        },
+
+        async processCSVFiles(files, resultDiv) {
+            if (!window.ExtratoImporter) {
+                showToast('Módulo de importação não encontrado', 'error');
+                return;
+            }
+
+            let totalAdded = 0;
+            let totalSkipped = 0;
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (!file.name.endsWith('.csv')) continue;
+
+                const result = await ExtratoImporter.importFromFile(file);
+                totalAdded += result.added;
+                totalSkipped += result.skipped;
+            }
+
+            if (resultDiv) {
+                resultDiv.innerHTML = `<span style="color: var(--accent-success);">✅ ${totalAdded} lançamentos importados</span>` +
+                    (totalSkipped > 0 ? ` <span style="color: var(--text-tertiary);">(${totalSkipped} duplicados ignorados)</span>` : '');
+            }
+
+            if (totalAdded > 0) {
+                showToast(`${totalAdded} lançamentos importados! ✓`, 'success');
+                this.refresh();
+            } else if (totalSkipped > 0) {
+                showToast('Todos os lançamentos já existem', 'info');
+            }
         },
 
         setupSyncListeners() {
@@ -432,9 +503,22 @@
             if (DataManager.isConnected()) {
                 setTimeout(() => this.doSync(), 1000);
             }
+
+            // Auto-sync when page becomes visible (Page Visibility API)
+            this._lastSyncTime = Date.now();
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState !== 'visible') return;
+                if (!DataManager.isConnected()) return;
+                const elapsed = Date.now() - this._lastSyncTime;
+                if (elapsed < 60000) return; // 60s debounce
+                this._lastSyncTime = Date.now();
+                console.log('🔄 Auto-sync: page became visible after ' + Math.round(elapsed / 1000) + 's');
+                this.doSync();
+            });
         },
 
         async doSync() {
+            this._lastSyncTime = Date.now();
             const syncBtn = document.getElementById('btn-sync-sheets');
             const dashSyncBtn = document.getElementById('btn-dashboard-sync');
             const statusText = document.getElementById('sync-status-text');
