@@ -695,6 +695,134 @@ small {
   transform: scale(0.95);
 }
 
+.bottom-nav-item-label {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+/* ================================================================
+   MORE MENU (Mobile Bottom Sheet)
+   ================================================================ */
+
+.more-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.more-menu-overlay.active,
+.more-menu-overlay:not([hidden]) {
+  opacity: 1;
+  visibility: visible;
+}
+
+.more-menu {
+  background: var(--bg-tertiary);
+  width: 100%;
+  max-width: 500px;
+  border-radius: 24px 24px 0 0;
+  padding: var(--space-lg) var(--space-lg) calc(var(--space-xl) + env(safe-area-inset-bottom, 0px));
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.more-menu-overlay.active .more-menu,
+.more-menu-overlay:not([hidden]) .more-menu {
+  transform: translateY(0);
+}
+
+.more-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border);
+}
+
+.more-menu-header h3 {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.more-menu-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-quaternary);
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+}
+
+.more-menu-close:hover {
+  background: var(--accent-danger-muted);
+  color: var(--accent-danger);
+}
+
+.more-menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: var(--text-base);
+  font-weight: 500;
+  transition: background var(--transition-base);
+  min-height: 52px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.more-menu-item:hover,
+.more-menu-item:active {
+  background: var(--bg-quaternary);
+}
+
+.more-menu-item .nav-icon {
+  font-size: 1.3rem;
+  width: 28px;
+  text-align: center;
+}
+
+/* ================================================================
+   MOBILE TOUCH IMPROVEMENTS
+   ================================================================ */
+
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .main-content {
+    touch-action: manipulation;
+  }
+}
+
 /* ================================================================
    3. KPI CARDS
    ================================================================ */
@@ -3590,7 +3718,8 @@ small {
   }
 
   .bottom-nav {
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
 
   .main-content {

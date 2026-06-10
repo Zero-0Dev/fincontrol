@@ -124,7 +124,7 @@
             });
 
             // Bottom nav items (mobile)
-            const bottomNavItems = document.querySelectorAll('.bottom-nav .nav-item');
+            const bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-tab]');
             bottomNavItems.forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -139,7 +139,7 @@
 
         setupMobileNav() {
             // More menu button
-            const moreBtn = document.querySelector('.nav-item[data-action="more"]');
+            const moreBtn = document.querySelector('.bottom-nav-item[data-action="more"]');
             if (moreBtn) {
                 moreBtn.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -203,7 +203,7 @@
             });
 
             // Update bottom nav active state
-            const bottomItems = document.querySelectorAll('.bottom-nav .nav-item');
+            const bottomItems = document.querySelectorAll('.bottom-nav-item[data-tab]');
             bottomItems.forEach(item => {
                 item.classList.toggle('active', item.getAttribute('data-tab') === tabId);
             });
