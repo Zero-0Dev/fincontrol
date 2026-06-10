@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FinControl — Aplicativo de controle financeiro pessoal. Gerencie receitas, despesas, patrimônio, metas e muito mais.">
+  <meta name="keywords" content="finanças pessoais, controle financeiro, orçamento, patrimônio, metas financeiras">
+  <meta name="author" content="FinControl">
+  <meta name="theme-color" content="#4F46E5">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+  <title>FinControl — Controle Financeiro Pessoal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================= -->
+  <!-- SIDEBAR NAVIGATION (Desktop)                                   -->
+  <!-- ============================================================= -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-icon">💰</span>
+      <span class="brand-text">FinControl</span>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegação principal">
+      <ul>
+        <li>
+          <a href="#" class="nav-item active" data-tab="dashboard" aria-current="page">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" data-tab="quick-entry">
+            <span class="nav-icon">⚡</span>
+            <span class="nav-label">Lançamento Rápido</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" data-tab="transactions">
+            <span class="nav-icon">📝</span>
+            <span class="nav-label">Lançamentos</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" data-tab="accounts">
+            <span class="nav-icon">🏦</span>
+            <span class="nav-label">Contas Bancárias</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" data-tab="cards">
+            <span class="nav-icon">💳</span>
+            <span class="nav-label">Cartões</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" data-tab="patrimony">
+            <span class="nav-icon">💎</span>
+            <span class="nav-label">Patrimônio</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" data-tab="goals">
+            <span class="nav-icon">🎯</span>
+            <span class="nav-label">Metas</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" data-tab="vehicle">
+            <span class="nav-icon">🚗</span>
+            <span class="nav-label">Veículo</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" data-tab="reports">
+            <span class="nav-icon">📈</span>
+            <span class="nav-label">Relatórios</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" data-tab="settings">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-label">Configurações</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- ============================================================= -->
+  <!-- BOTTOM NAVIGATION (Mobile)                                     -->
+  <!-- ============================================================= -->
+  <nav class="bottom-nav" id="bottom-nav" aria-label="Navegação mobile">
+    <a href="#" class="bottom-nav-item active" data-tab="dashboard">
+      <span class="bottom-nav-icon">📊</span>
+      <span class="bottom-nav-label">Dashboard</span>
+    </a>
+    <a href="#" class="bottom-nav-item" data-tab="quick-entry">
+      <span class="bottom-nav-icon">⚡</span>
+      <span class="bottom-nav-label">Lançamento</span>
+    </a>
+    <a href="#" class="bottom-nav-item" data-tab="transactions">
+      <span class="bottom-nav-icon">📝</span>
+      <span class="bottom-nav-label">Lançamentos</span>
+    </a>
+    <a href="#" class="bottom-nav-item" data-tab="patrimony">
+      <span class="bottom-nav-icon">💎</span>
+      <span class="bottom-nav-label">Patrimônio</span>
+    </a>
+    <a href="#" class="bottom-nav-item" data-tab="more-menu" id="btn-more-menu">
+      <span class="bottom-nav-icon">☰</span>
+      <span class="bottom-nav-label">Mais</span>
+    </a>
+  </nav>
+
+  <!-- Mobile "More" Menu Overlay -->
+  <div class="more-menu-overlay" id="more-menu-overlay" hidden>
+    <div class="more-menu">
+      <div class="more-menu-header">
+        <h3>Menu</h3>
+        <button class="more-menu-close" id="more-menu-close" aria-label="Fechar menu">✕</button>
+      </div>
+      <a href="#" class="more-menu-item" data-tab="accounts">
+        <span class="nav-icon">🏦</span> Contas Bancárias
+      </a>
+      <a href="#" class="more-menu-item" data-tab="cards">
+        <span class="nav-icon">💳</span> Cartões
+      </a>
+      <a href="#" class="more-menu-item" data-tab="goals">
+        <span class="nav-icon">🎯</span> Metas
+      </a>
+      <a href="#" class="more-menu-item" data-tab="vehicle">
+        <span class="nav-icon">🚗</span> Veículo
+      </a>
+      <a href="#" class="more-menu-item" data-tab="reports">
+        <span class="nav-icon">📈</span> Relatórios
+      </a>
+      <a href="#" class="more-menu-item" data-tab="settings">
+        <span class="nav-icon">⚙️</span> Configurações
+      </a>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- MAIN CONTENT AREA                                              -->
+  <!-- ============================================================= -->
+  <main class="main-content" id="main-content">
+
+    <!-- =========================================================== -->
+    <!-- TAB 1: DASHBOARD                                             -->
+    <!-- =========================================================== -->
+    <div class="tab-pane active" id="dashboard">
+      <div class="dashboard-grid">
+
+        <div class="section-header">
+          <h2>Visão Geral</h2>
+          <div class="month-selector">
+            <button class="btn btn-outline btn-sm" id="btn-dashboard-sync" title="Sincronizar com Google Sheets" style="padding: 6px 12px; font-size: 16px;">🔄</button>
+            <select id="dashboard-month" aria-label="Mês">
+              <option value="0">Janeiro</option>
+              <option value="1">Fevereiro</option>
+              <option value="2">Março</option>
+              <option value="3">Abril</option>
+              <option value="4">Maio</option>
+              <option value="5">Junho</option>
+              <option value="6">Julho</option>
+              <option value="7">Agosto</option>
+              <option value="8">Setembro</option>
+              <option value="9">Outubro</option>
+              <option value="10">Novembro</option>
+              <option value="11">Dezembro</option>
+            </select>
+            <select id="dashboard-year" aria-label="Ano">
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+              <option value="2029">2029</option>
+              <option value="2030">2030</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card" id="kpi-patrimonio">
+            <div class="kpi-icon">💎</div>
+            <div class="kpi-info">
+              <span class="kpi-label">Patrimônio Total</span>
+              <span class="kpi-value" id="kpi-patrimonio-value">R$ 0,00</span>
+              <span class="kpi-trend" id="kpi-patrimonio-trend"></span>
+            </div>
+          </div>
+          <div class="kpi-card" id="kpi-saldo">
+            <div class="kpi-icon">💰</div>
+            <div class="kpi-info">
+              <span class="kpi-label">Saldo Disponível</span>
+              <span class="kpi-value" id="kpi-saldo-value">R$ 0,00</span>
+              <span class="kpi-trend" id="kpi-saldo-trend"></span>
+            </div>
+          </div>
+          <div class="kpi-card" id="kpi-receita">
+            <div class="kpi-icon">📈</div>
+            <div class="kpi-info">
+              <span class="kpi-label">Recebido este mês</span>
+              <span class="kpi-value" id="kpi-receita-value">R$ 0,00</span>
+            </div>
+          </div>
+          <div class="kpi-card" id="kpi-despesa">
+            <div class="kpi-icon">📉</div>
+            <div class="kpi-info">
+              <span class="kpi-label">Gasto este mês</span>
+              <span class="kpi-value" id="kpi-despesa-value">R$ 0,00</span>
+            </div>
+          </div>
+          <div class="kpi-card" id="kpi-economia">
+            <div class="kpi-icon">🏆</div>
+            <div class="kpi-info">
+              <span class="kpi-label">Economia do mês</span>
+              <span class="kpi-value" id="kpi-economia-value">R$ 0,00</span>
+              <span class="kpi-trend" id="kpi-economia-percent"></span>
+            </div>
+          </div>
+          <div class="kpi-card" id="kpi-percentual">
+            <div class="kpi-icon">📊</div>
+            <div class="kpi-info">
+              <span class="kpi-label">% Economizado</span>
+              <span class="kpi-value" id="kpi-percentual-value">0%</span>
+              <span class="kpi-indicator" id="kpi-percentual-indicator"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="dashboard-charts">
+          <div class="chart-card">
+            <h3>Evolução Patrimonial</h3>
+            <canvas id="chart-patrimony-evolution"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Gastos por Categoria</h3>
+            <canvas id="chart-expenses-category"></canvas>
+          </div>
+        </div>
+
+        <!-- Saldo por Banco -->
+        <div class="dashboard-section">
+          <h3>Saldo por Banco</h3>
+          <div class="accounts-summary" id="dashboard-accounts">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Inteligência Financeira -->
+        <div class="dashboard-section">
+          <h3>Inteligência Financeira</h3>
+          <div class="stats-grid" id="dashboard-intelligence">
+            <!-- Populated by JS: gasto/dia, média mensal, autonomia, etc. -->
+          </div>
+        </div>
+
+        <!-- Projeções -->
+        <div class="dashboard-section">
+          <h3>Projeções</h3>
+          <div class="stats-grid" id="dashboard-projections">
+            <!-- Populated by JS: 6 meses, 12 meses, 24 meses -->
+          </div>
+        </div>
+
+        <!-- Alertas -->
+        <div class="dashboard-section">
+          <h3>Alertas</h3>
+          <div class="alerts-container" id="dashboard-alerts">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Últimas Movimentações -->
+        <div class="dashboard-section">
+          <h3>Últimas Movimentações</h3>
+          <div class="transaction-list" id="dashboard-recent">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- =========================================================== -->
+    <!-- TAB 2: QUICK ENTRY                                           -->
+    <!-- =========================================================== -->
+    <div class="tab-pane" id="quick-entry">
+      <div class="quick-entry">
+
+        <div class="section-header">
+          <div>
+            <h2>Lançamento Rápido</h2>
+            <p class="section-subtitle">Registre em segundos</p>
+          </div>
+        </div>
+
+        <form id="quick-entry-form" autocomplete="off">
+          <div class="form-group">
+            <label for="quick-date">Data</label>
+            <input type="date" id="quick-date" required>
+          </div>
+
+          <div class="form-group">
+            <label>Tipo</label>
+            <div class="toggle-buttons" id="quick-type-toggle">
+              <button type="button" class="toggle-btn" data-value="receita">Receita</button>
+              <button type="button" class="toggle-btn active" data-value="despesa">Despesa</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="quick-category">Categoria</label>
+            <select id="quick-category" required>
+              <!-- Populated by JS -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="quick-amount">Valor</label>
+            <input type="number" id="quick-amount" placeholder="0,00" inputmode="decimal" step="0.01" min="0.01" required>
+          </div>
+
+          <div class="form-group">
+            <label for="quick-account">Conta</label>
+            <select id="quick-account" required>
+              <option value="itau-principal">Itaú Principal</option>
+              <option value="itau-secundaria">Itaú Secundária</option>
+              <option value="nubank">Nubank</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="quick-notes">Observação (opcional)</label>
+            <input type="text" id="quick-notes" placeholder="Ex: Almoço no trabalho">
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" id="quick-submit">✓ Registrar</button>
+        </form>
+
+        <div class="recent-entries">
+          <h3>Últimos Registros</h3>
+          <div class="transaction-list" id="quick-recent-list">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- =========================================================== -->
+    <!-- TAB 3: TRANSACTIONS                                          -->
+    <!-- =========================================================== -->
+    <div class="tab-pane" id="transactions">
+
+      <div class="section-header">
+        <h2>Lançamentos</h2>
+      </div>
+
+      <!-- Filters -->
+      <div class="filter-bar">
+        <select id="filter-month" aria-label="Filtrar por mês">
+          <option value="">Todos os meses</option>
+          <option value="0">Janeiro</option>
+          <option value="1">Fevereiro</option>
+          <option value="2">Março</option>
+          <option value="3">Abril</option>
+          <option value="4">Maio</option>
+          <option value="5">Junho</option>
+          <option value="6">Julho</option>
+          <option value="7">Agosto</option>
+          <option value="8">Setembro</option>
+          <option value="9">Outubro</option>
+          <option value="10">Novembro</option>
+          <option value="11">Dezembro</option>
+        </select>
+        <select id="filter-year" aria-label="Filtrar por ano">
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+          <option value="2026">2026</option>
+          <option value="2027">2027</option>
+          <option value="2028">2028</option>
+          <option value="2029">2029</option>
+          <option value="2030">2030</option>
+        </select>
+        <select id="filter-type" aria-label="Filtrar por tipo">
+          <option value="">Todos</option>
+          <option value="receita">Receita</option>
+          <option value="despesa">Despesa</option>
+        </select>
+        <select id="filter-category" aria-label="Filtrar por categoria">
+          <option value="">Todas as categorias</option>
+          <!-- Populated by JS -->
+        </select>
+        <select id="filter-account" aria-label="Filtrar por conta">
+          <option value="">Todas as contas</option>
+          <!-- Populated by JS -->
+        </select>
+      </div>
+
+      <!-- Add Transaction Form (collapsible) -->
+      <details class="collapsible-form">
+        <summary class="btn btn-outline">+ Novo Lançamento</summary>
+        <form id="transaction-form" autocomplete="off">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="trans-date">Data</label>
+              <input type="date" id="trans-date" required>
+            </div>
+            <div class="form-group">
+              <label for="trans-type">Tipo</label>
+              <select id="trans-type" required>
+                <option value="despesa">Despesa</option>
+                <option value="receita">Receita</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="trans-category">Categoria</label>
+              <select id="trans-category" required>
+                <!-- Populated by JS -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="trans-subcategory">Subcategoria</label>
+              <select id="trans-subcategory">
+                <option value="">Nenhuma</option>
+                <!-- Populated by JS -->
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="trans-amount">Valor</label>
+              <input type="number" id="trans-amount" placeholder="0,00" inputmode="decimal" step="0.01" min="0.01" required>
+            </div>
+            <div class="form-group">
+              <label for="trans-payment">Forma de Pagamento</label>
+              <select id="trans-payment">
+                <option value="pix">PIX</option>
+                <option value="debito">Débito</option>
+                <option value="credito">Crédito</option>
+                <option value="dinheiro">Dinheiro</option>
+                <option value="transferencia">Transferência</option>
+                <option value="boleto">Boleto</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="trans-account">Conta</label>
+              <select id="trans-account" required>
+                <option value="itau-principal">Itaú Principal</option>
+                <option value="itau-secundaria">Itaú Secundária</option>
+                <option value="nubank">Nubank</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="trans-notes">Observação</label>
+              <input type="text" id="trans-notes" placeholder="Descrição do lançamento">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+          </div>
+        </form>
+      </details>
+
+      <!-- Transactions Table -->
+      <div class="data-table-container">
+        <table class="data-table" id="transactions-table">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Tipo</th>
+              <th>Categoria</th>
+              <th>Valor</th>
+              <th>Conta</th>
+              <th>Pagamento</th>
+              <th>Obs</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="transactions-body">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+
+        <div class="table-footer">
+          <span id="transactions-count">0 lançamentos</span>
+          <span id="transactions-total">Total: R$ 0,00</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =========================================================== -->
+    <!-- TAB 4: ACCOUNTS                                              -->
+    <!-- =========================================================== -->
+    <div class="tab-pane" id="accounts">
+
+      <div class="section-header">
+        <h2>Contas Bancárias</h2>
+      </div>
+
+      <!-- Account Cards -->
+      <div class="accounts-grid">
+        <div class="account-card" id="account-itau-principal">
+          <div class="account-header">
+            <span class="account-icon">🏦</span>
+            <span class="account-name">Itaú Principal</span>
+          </div>
+          <div class="account-balance" id="balance-itau-principal">R$ 0,00</div>
+          <div class="account-stats">
+            <div class="stat">
+              <span class="stat-label">Entradas</span>
+              <span class="stat-value text-success" id="income-itau-principal">R$ 0,00</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Saídas</span>
+              <span class="stat-value text-danger" id="expense-itau-principal">R$ 0,00</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Transferências</span>
+              <span class="stat-value" id="transfers-itau-principal">R$ 0,00</span>
+            </div>
+          </div>
+          <canvas class="account-chart" id="chart-itau-principal"></canvas>
+        </div>
+
+        <div class="account-card" id="account-itau-secundaria">
+          <div class="account-header">
+            <span class="account-icon">🏦</span>
+            <span class="account-name">Itaú Secundária</span>
+          </div>
+          <div class="account-balance" id="balance-itau-secundaria">R$ 0,00</div>
+          <div class="account-stats">
+            <div class="stat">
+              <span class="stat-label">Entradas</span>
+              <span class="stat-value text-success" id="income-itau-secundaria">R$ 0,00</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Saídas</span>
+              <span class="stat-value text-danger" id="expense-itau-secundaria">R$ 0,00</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Transferências</span>
+              <span class="stat-value" id="transfers-itau-secundaria">R$ 0,00</span>
+            </div>
+          </div>
+          <canvas class="account-chart" id="chart-itau-secundaria"></canvas>
+        </div>
+
+        <div class="account-card" id="account-nubank">
+          <div class="account-header">
+            <span class="account-icon">🏦</span>
+            <span class="account-name">Nubank</span>
+          </div>
+          <div class="account-balance" id="balance-nubank">R$ 0,00</div>
+          <div class="account-stats">
+            <div class="stat">
+              <span class="stat-label">Entradas</span>
+              <span class="stat-value text-success" id="income-nubank">R$ 0,00</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Saídas</span>
+              <span class="stat-value text-danger" id="expense-nubank">R$ 0,00</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Transferências</span>
+              <span class="stat-value" id="transfers-nubank">R$ 0,00</span>
+            </div>
+          </div>
+          <canvas class="account-chart" id="chart-nubank"></canvas>
+        </div>
+      </div>
+
+      <!-- Consolidação -->
+      <div class="section-header">
+        <h3>Consolidação</h3>
+      </div>
+      <div class="consolidation-card" id="accounts-consolidation">
+        <!-- Populated by JS: Total consolidado, breakdown -->
+      </div>
+
+      <!-- Transferências -->
+      <div class="section-header">
+        <h3>Transferências</h3>
+      </div>
+      <form id="transfer-form" class="transfer-form" autocomplete="off">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="transfer-from">De</label>
+            <select id="transfer-from" required>
+              <option value="itau-principal">Itaú Principal</option>
+              <option value="itau-secundaria">Itaú Secundária</option>
+              <option value="nubank">Nubank</option>
+            </select>
+          </div>
+          <span class="transfer-arrow" aria-hidden="true">→</span>
+          <div class="form-group">
+            <label for="transfer-to">Para</label>
+            <select id="transfer-to" required>
+              <option value="itau-principal">Itaú Principal</option>
+              <option value="itau-secundaria">Itaú Secundária</option>
+              <option value="nubank">Nubank</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="transfer-amount">Valor</label>
+            <input type="number" id="transfer-amount" placeholder="0,00" inputmode="decimal" step="0.01" min="0.01" required>
+          </div>
+          <div class="form-group">
+            <label for="transfer-date">Data</label>
+            <input type="date" id="transfer-date" required>
+          </div>
+          <div class="form-group form-group-action">
+            <button type="submit" class="btn btn-primary">Transferir</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="data-table-container">
+        <table class="data-table" id="transfers-table">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>De</th>
+              <th>Para</th>
+              <th>Valor</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="transfers-body">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- =========================================================== -->
+    <!-- TAB 5: CARDS                                                 -->
+    <!-- =========================================================== -->
+    <div class="tab-pane" id="cards">
+
+      <div class="section-header">
+        <h2>Cartões e Parcelamentos</h2>
+      </div>
+
+      <!-- Card Summary Cards -->
+      <div class="cards-grid">
+        <div class="installment-card" id="card-itau">
+          <div class="card-header">
+            <span class="card-icon">💳</span>
+            <span class="card-name">Cartão Itaú</span>
+          </div>
+          <div class="card-stats">
+            <div class="stat">
+              <span class="stat-label">Fatura atual</span>
+              <span class="stat-value" id="card-itau-invoice">R$ 0,00</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Parcelamentos ativos</span>
+              <span class="stat-value" id="card-itau-installments">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="installment-card" id="card-nubank">
+          <div class="card-header">
+            <span class="card-icon">💳</span>
+            <span class="card-name">Cartão Nubank</span>
+          </div>
+          <div class="card-stats">
+            <div class="stat">
+              <span class="stat-label">Fatura atual</span>
+              <span class="stat-value" id="card-nubank-invoice">R$ 0,00</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Parcelamentos ativos</span>
+              <span class="stat-value" id="card-nubank-installments">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Installments -->
+      <div class="section-header">
+        <h3>Parcelamentos Ativos</h3>
+        <button class="btn btn-primary" id="btn-add-installment">Novo Parcelamento</button>
+      </div>
+
+      <div class="data-table-container">
+        <table class="data-table" id="installments-table">
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Cartão</th>
+              <th>Valor Total</th>
+              <th>Parcelas</th>
+              <th>Atual</th>
+              <th>Valor Parcela</th>
+              <th>Término</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="installments-body">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Card Alerts -->
+      <div class="section-header">
+        <h3>Alertas</h3>
+      </div>
+      <div class="alerts-container" id="cards-alerts">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Modal: New Installment -->
+      <div class="modal-overlay" id="modal-installment" hidden>
+        <div class="modal" role="dialog" aria-labelledby="modal-installment-title" aria-modal="true">
+          <div class="modal-header">
+            <h3 id="modal-installment-title">Novo Parcelamento</h3>
+            <button class="modal-close" id="modal-installment-close" aria-label="Fechar">✕</button>
+          </div>
+          <div class="modal-body">
+            <form id="installment-form" autocomplete="off">
+              <div class="form-group">
+                <label for="inst-description">Descrição</label>
+                <input type="text" id="inst-description" placeholder="Ex: iPhone 15" required>
+              </div>
+              <div class="form-group">
+                <label for="inst-card">Cartão</label>
+                <select id="inst-card" required>
+                  <option value="itau">Cartão Itaú</option>
+                  <option value="nubank">Cartão Nubank</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="inst-total-amount">Valor Total</label>
+                <input type="number" id="inst-total-amount" placeholder="0,00" inputmode="decimal" step="0.01" min="0.01" required>
+              </div>
+              <div class="form-group">
+                <label for="inst-count">Número de Parcelas</label>
+                <input type="number" id="inst-count" placeholder="12" min="1" max="48" required>
+              </div>
+              <div class="form-group">
+                <label for="inst-current">Parcela Atual</label>
+                <input type="number" id="inst-current" placeholder="1" min="1" required>
+              </div>
+              <div class="form-group">
+                <label for="inst-amount">Valor da Parcela</label>
+                <input type="number" id="inst-amount" placeholder="0,00" inputmode="decimal" step="0.01" min="0.01" required>
+              </div>
+              <div class="form-group">
+                <label for="inst-category">Categoria</label>
+                <select id="inst-category">
+                  <!-- Populated by JS -->
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="inst-start">Data Início</label>
+                <input type="date" id="inst-start" required>
+              </div>
+              <div class="form-group">
+                <label for="inst-end">Data Término</label>
+                <input type="date" id="inst-end" required>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline" id="modal-installment-cancel">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="modal-installment-save">Salvar</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =========================================================== -->
+    <!-- TAB 6: PATRIMONY                                             -->
+    <!-- =========================================================== -->
+    <div class="tab-pane" id="patrimony">
+
+      <div class="section-header">
+        <h2>Patrimônio</h2>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card" id="patrimony-current">
+          <div class="kpi-icon">💎</div>
+          <div class="kpi-info">
+            <span class="kpi-label">Patrimônio Atual</span>
+            <span class="kpi-value" id="patrimony-current-value">R$ 0,00</span>
+          </div>
+        </div>
+        <div class="kpi-card" id="patrimony-growth">
+          <div class="kpi-icon">📈</div>
+          <div class="kpi-info">
+            <span class="kpi-label">Crescimento Mensal</span>
+            <span class="kpi-value" id="patrimony-growth-value">R$ 0,00</span>
+          </div>
+        </div>
+        <div class="kpi-card" id="patrimony-total-saved">
+          <div class="kpi-icon">🏆</div>
+          <div class="kpi-info">
+            <span class="kpi-label">Total Economizado</span>
+            <span class="kpi-value" id="patrimony-total-saved-value">R$ 0,00</span>
+          </div>
+        </div>
+        <div class="kpi-card" id="patrimony-accumulated">
+          <div class="kpi-icon">📊</div>
+          <div class="kpi-info">
+            <span class="kpi-label">Crescimento Acumulado</span>
+            <span class="kpi-value" id="patrimony-accumulated-value">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Patrimony Evolution Chart -->
+      <div class="chart-card">
+        <h3>Evolução Patrimonial</h3>
+        <canvas id="chart-patrimony-full"></canvas>
+      </div>
+
+      <!-- Register Patrimony -->
+      <div class="section-header">
+        <h3>Registrar Patrimônio</h3>
+      </div>
+      <form id="patrimony-form" class="inline-form" autocomplete="off">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="patrimony-month">Mês</label>
+            <input type="month" id="patrimony-month" required>
+          </div>
+          <div class="form-group">
+            <label for="patrimony-amount">Valor</label>
+            <input type="number" id="patrimony-amount" placeholder="0,00" inputmode="decimal" step="0.01" min="0" required>
+          </div>
+          <div class="form-group form-group-action">
+            <button type="submit" class="btn btn-primary">Registrar</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Patrimony History Table -->
+      <div class="data-table-container">
+        <table class="data-table" id="patrimony-table">
+          <thead>
+            <tr>
+              <th>Mês</th>
+              <th>Valor</th>
+              <th>Variação</th>
+              <th>%</th>
+            </tr>
+          </thead>
+          <tbody id="patrimony-body">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- =========================================================== -->
+    <!-- TAB 7: GOALS                                                 -->
+    <!-- =========================================================== -->
+    <div class="tab-pane" id="goals">
+
+      <div class="section-header">
+        <h2>Metas Financeiras</h2>
+        <button class="btn btn-primary" id="btn-add-goal">Nova Meta</button>
+      </div>
+
+      <div class="goals-grid" id="goals-container">
+        <!-- Populated by JS — goal cards with progress bars -->
+      </div>
+
+      <!-- Modal: New/Edit Goal -->
+      <div class="modal-overlay" id="modal-goal" hidden>
+        <div class="modal" role="dialog" aria-labelledby="modal-goal-title" aria-modal="true">
+          <div class="modal-header">
+            <h3 id="modal-goal-title">Nova Meta</h3>
+            <button class="modal-close" id="modal-goal-close" aria-label="Fechar">✕</button>
+          </div>
+          <div class="modal-body">
+            <form id="goal-form" autocomplete="off">
+              <input type="hidden" id="goal-id">
+              <div class="form-group">
+                <label for="goal-name">Nome da Meta</label>
+                <input type="text" id="goal-name" placeholder="Ex: Reserva de Emergência" required>
+              </div>
+              <div class="form-group">
+                <label for="goal-target">Valor da Meta</label>
+                <input type="number" id="goal-target" placeholder="Valor da meta" inputmode="decimal" step="0.01" min="0.01" required>
+              </div>
+              <div class="form-group">
+                <label for="goal-current">Valor Atual</label>
+                <input type="number" id="goal-current" placeholder="Valor atual" inputmode="decimal" step="0.01" min="0" required>
+              </div>
+              <div class="form-group">
+                <label for="goal-deadline">Prazo</label>
+                <input type="month" id="goal-deadline" required>
+              </div>
+              <div class="form-group">
+                <label for="goal-icon">Ícone</label>
+                <select id="goal-icon">
+                  <option value="🎯">🎯 Alvo</option>
+                  <option value="🚗">🚗 Carro</option>
+                  <option value="💻">💻 Computador</option>
+                  <option value="🏠">🏠 Casa</option>
+                  <option value="🎓">🎓 Educação</option>
+                  <option value="✈️">✈️ Viagem</option>
+                  <option value="💰">💰 Dinheiro</option>
+                  <option value="🛡️">🛡️ Reserva</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="goal-color">Cor</label>
+                <select id="goal-color">
+                  <option value="indigo">Índigo</option>
+                  <option value="green">Verde</option>
+                  <option value="amber">Âmbar</option>
+                  <option value="pink">Rosa</option>
+                  <option value="cyan">Cyan</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline" id="modal-goal-cancel">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="modal-goal-save">Salvar</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =========================================================== -->
+    <!-- TAB 8: VEHICLE                                               -->
+    <!-- =========================================================== -->
+    <div class="tab-pane" id="vehicle">
+
+      <div class="section-header">
+        <h2>Controle Veicular</h2>
+        <span class="badge badge-info">Em preparação</span>
+      </div>
+
+      <div class="vehicle-alert">
+        <p>🚗 Esta seção está preparada para quando você adquirir seu veículo. Comece registrando dados quando estiver pronto!</p>
+      </div>
+
+      <!-- Vehicle Sub-tabs -->
+      <div class="vehicle-tabs" id="vehicle-tabs">
+        <button type="button" class="vehicle-tab-btn active" data-vehicle-tab="vehicle-fuel">Abastecimento</button>
+        <button type="button" class="vehicle-tab-btn" data-vehicle-tab="vehicle-maintenance">Manutenção</button>
+        <button type="button" class="vehicle-tab-btn" data-vehicle-tab="vehicle-documents">Documentos</button>
+      </div>
+
+      <!-- Fuel Tab -->
+      <div class="vehicle-tab-pane active" id="vehicle-fuel">
+        <div class="section-header">
+          <button class="btn btn-primary" id="btn-add-fuel">Registrar Abastecimento</button>
+        </div>
+
+        <div class="stats-grid" id="fuel-stats">
+          <!-- Populated by JS: Consumo médio, Custo/km, Gasto mensal, Total gasto -->
+        </div>
+
+        <div class="chart-card">
+          <h3>Histórico de Abastecimento</h3>
+          <canvas id="chart-fuel"></canvas>
+        </div>
+
+        <div class="data-table-container">
+          <table class="data-table" id="fuel-table">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>KM</th>
+                <th>Litros</th>
+                <th>R$/L</th>
+                <th>Total</th>
+                <th>Consumo</th>
+                <th>Posto</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="fuel-body">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Maintenance Tab -->
+      <div class="vehicle-tab-pane" id="vehicle-maintenance" hidden>
+        <div class="section-header">
+          <button class="btn btn-primary" id="btn-add-maintenance">Registrar Manutenção</button>
+        </div>
+
+        <div class="data-table-container">
+          <table class="data-table" id="maintenance-table">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Tipo</th>
+                <th>Descrição</th>
+                <th>KM</th>
+                <th>Valor</th>
+                <th>Local</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="maintenance-body">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Documents Tab -->
+      <div class="vehicle-tab-pane" id="vehicle-documents" hidden>
+        <div class="section-header">
+          <button class="btn btn-primary" id="btn-add-document">Registrar Documento</button>
+        </div>
+
+        <div class="data-table-container">
+          <table class="data-table" id="documents-table">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Descrição</th>
+                <th>Vencimento</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="documents-body">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Modal: Fuel -->
+      <div class="modal-overlay" id="modal-fuel" hidden>
+        <div class="modal" role="dialog" aria-labelledby="modal-fuel-title" aria-modal="true">
+          <div class="modal-header">
+            <h3 id="modal-fuel-title">Registrar Abastecimento</h3>
+            <button class="modal-close" id="modal-fuel-close" aria-label="Fechar">✕</button>
+          </div>
+          <div class="modal-body">
+            <form id="fuel-form" autocomplete="off">
+              <div class="form-group">
+                <label for="fuel-date">Data</label>
+                <input type="date" id="fuel-date" required>
+              </div>
+              <div class="form-group">
+                <label for="fuel-km">Quilometragem</label>
+                <input type="number" id="fuel-km" placeholder="KM atual" min="0" required>
+              </div>
+              <div class="form-group">
+                <label for="fuel-liters">Litros</label>
+                <input type="number" id="fuel-liters" placeholder="Litros abastecidos" inputmode="decimal" step="0.01" min="0.01" required>
+              </div>
+              <div class="form-group">
+                <label for="fuel-price-per-liter">Preço por Litro</label>
+                <input type="number" id="fuel-price-per-liter" placeholder="R$/L" inputmode="decimal" step="0.01" min="0.01" required>
+              </div>
+              <div class="form-group">
+                <label for="fuel-total">Total</label>
+                <input type="number" id="fuel-total" placeholder="Valor total" inputmode="decimal" step="0.01" min="0.01" required>
+              </div>
+              <div class="form-group">
+                <label for="fuel-station">Posto</label>
+                <input type="text" id="fuel-station" placeholder="Nome do posto">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline" id="modal-fuel-cancel">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="modal-fuel-save">Salvar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: Maintenance -->
+      <div class="modal-overlay" id="modal-maintenance" hidden>
+        <div class="modal" role="dialog" aria-labelledby="modal-maintenance-title" aria-modal="true">
+          <div class="modal-header">
+            <h3 id="modal-maintenance-title">Registrar Manutenção</h3>
+            <button class="modal-close" id="modal-maintenance-close" aria-label="Fechar">✕</button>
+          </div>
+          <div class="modal-body">
+            <form id="maintenance-form" autocomplete="off">
+              <div class="form-group">
+                <label for="maint-date">Data</label>
+                <input type="date" id="maint-date" required>
+              </div>
+              <div class="form-group">
+                <label for="maint-type">Tipo</label>
+                <select id="maint-type" required>
+                  <option value="preventiva">Preventiva</option>
+                  <option value="corretiva">Corretiva</option>
+                  <option value="revisao">Revisão</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="maint-description">Descrição</label>
+                <input type="text" id="maint-description" placeholder="Descreva a manutenção" required>
+              </div>
+              <div class="form-group">
+                <label for="maint-km">Quilometragem</label>
+                <input type="number" id="maint-km" placeholder="KM atual" min="0">
+              </div>
+              <div class="form-group">
+                <label for="maint-amount">Valor</label>
+                <input type="number" id="maint-amount" placeholder="0,00" inputmode="decimal" step="0.01" min="0" required>
+              </div>
+              <div class="form-group">
+                <label for="maint-location">Local</label>
+                <input type="text" id="maint-location" placeholder="Oficina / Concessionária">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline" id="modal-maintenance-cancel">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="modal-maintenance-save">Salvar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: Document -->
+      <div class="modal-overlay" id="modal-document" hidden>
+        <div class="modal" role="dialog" aria-labelledby="modal-document-title" aria-modal="true">
+          <div class="modal-header">
+            <h3 id="modal-document-title">Registrar Documento</h3>
+            <button class="modal-close" id="modal-document-close" aria-label="Fechar">✕</button>
+          </div>
+          <div class="modal-body">
+            <form id="document-form" autocomplete="off">
+              <div class="form-group">
+                <label for="doc-type">Tipo</label>
+                <select id="doc-type" required>
+                  <option value="ipva">IPVA</option>
+                  <option value="licenciamento">Licenciamento</option>
+                  <option value="seguro">Seguro</option>
+                  <option value="multa">Multa</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="doc-description">Descrição</label>
+                <input type="text" id="doc-description" placeholder="Detalhes do documento">
+              </div>
+              <div class="form-group">
+                <label for="doc-due-date">Vencimento</label>
+                <input type="date" id="doc-due-date" required>
+              </div>
+              <div class="form-group">
+                <label for="doc-amount">Valor</label>
+                <input type="number" id="doc-amount" placeholder="0,00" inputmode="decimal" step="0.01" min="0" required>
+              </div>
+              <div class="form-group">
+                <label for="doc-status">Status</label>
+                <select id="doc-status" required>
+                  <option value="pendente">Pendente</option>
+                  <option value="pago">Pago</option>
+                  <option value="vencido">Vencido</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline" id="modal-document-cancel">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="modal-document-save">Salvar</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =========================================================== -->
+    <!-- TAB 9: REPORTS                                               -->
+    <!-- =========================================================== -->
+    <div class="tab-pane" id="reports">
+
+      <div class="section-header">
+        <h2>Relatórios</h2>
+      </div>
+
+      <!-- Filters -->
+      <div class="filter-bar">
+        <select id="report-month" aria-label="Mês do relatório">
+          <option value="">Todos os meses</option>
+          <option value="0">Janeiro</option>
+          <option value="1">Fevereiro</option>
+          <option value="2">Março</option>
+          <option value="3">Abril</option>
+          <option value="4">Maio</option>
+          <option value="5">Junho</option>
+          <option value="6">Julho</option>
+          <option value="7">Agosto</option>
+          <option value="8">Setembro</option>
+          <option value="9">Outubro</option>
+          <option value="10">Novembro</option>
+          <option value="11">Dezembro</option>
+        </select>
+        <select id="report-year" aria-label="Ano do relatório">
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+          <option value="2026">2026</option>
+          <option value="2027">2027</option>
+          <option value="2028">2028</option>
+          <option value="2029">2029</option>
+          <option value="2030">2030</option>
+        </select>
+        <select id="report-category" aria-label="Categoria do relatório">
+          <option value="">Todas as categorias</option>
+          <!-- Populated by JS -->
+        </select>
+        <select id="report-account" aria-label="Conta do relatório">
+          <option value="">Todas as contas</option>
+          <!-- Populated by JS -->
+        </select>
+        <button class="btn btn-primary" id="btn-filter-reports">Filtrar</button>
+      </div>
+
+      <!-- Report Charts Grid -->
+      <div class="reports-grid">
+        <div class="chart-card">
+          <h3>Receitas x Despesas</h3>
+          <canvas id="chart-income-expenses"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <h3>Gastos por Categoria</h3>
+          <canvas id="chart-report-categories"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <h3>Gastos por Mês</h3>
+          <canvas id="chart-monthly-expenses"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <h3>Gastos por Banco</h3>
+          <canvas id="chart-bank-expenses"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <h3>Gastos por Forma de Pagamento</h3>
+          <canvas id="chart-payment-methods"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <h3>Evolução Patrimonial</h3>
+          <canvas id="chart-report-patrimony"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <h3>Economia Mensal</h3>
+          <canvas id="chart-monthly-savings"></canvas>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =========================================================== -->
+    <!-- TAB 10: SETTINGS                                             -->
+    <!-- =========================================================== -->
+    <div class="tab-pane" id="settings">
+
+      <div class="section-header">
+        <h2>Configurações</h2>
+      </div>
+
+      <div class="settings-grid">
+        <!-- Banks -->
+        <div class="settings-section">
+          <h3>Bancos</h3>
+          <div class="settings-list" id="settings-banks">
+            <!-- Populated by JS -->
+          </div>
+          <button class="btn btn-outline btn-sm" id="btn-add-bank">Adicionar Banco</button>
+        </div>
+
+        <!-- Income Categories -->
+        <div class="settings-section">
+          <h3>Categorias de Receita</h3>
+          <div class="settings-list" id="settings-income-categories">
+            <!-- Populated by JS -->
+          </div>
+          <button class="btn btn-outline btn-sm" id="btn-add-income-category">Adicionar</button>
+        </div>
+
+        <!-- Expense Categories -->
+        <div class="settings-section">
+          <h3>Categorias de Despesa</h3>
+          <div class="settings-list" id="settings-expense-categories">
+            <!-- Populated by JS -->
+          </div>
+          <button class="btn btn-outline btn-sm" id="btn-add-expense-category">Adicionar</button>
+        </div>
+
+        <!-- Cards -->
+        <div class="settings-section">
+          <h3>Cartões</h3>
+          <div class="settings-list" id="settings-cards">
+            <!-- Populated by JS -->
+          </div>
+          <button class="btn btn-outline btn-sm" id="btn-add-card">Adicionar Cartão</button>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="settings-section">
+          <h3>Formas de Pagamento</h3>
+          <div class="settings-list" id="settings-payment-methods">
+            <!-- Populated by JS -->
+          </div>
+          <button class="btn btn-outline btn-sm" id="btn-add-payment-method">Adicionar</button>
+        </div>
+      </div>
+
+      <!-- Google Sheets Connection -->
+      <div class="settings-section" id="settings-sync-section">
+        <h3>☁️ Google Sheets (Sincronização)</h3>
+        <p class="section-subtitle">Conecte uma planilha Google Sheets para sincronizar dados entre dispositivos.</p>
+        <div class="form-group">
+          <label for="api-url-input">URL do Apps Script (Web App)</label>
+          <input type="url" id="api-url-input" placeholder="https://script.google.com/macros/s/.../exec" style="font-size: 13px;">
+        </div>
+        <div class="export-area">
+          <button class="btn btn-primary" id="btn-connect-sheets">🔗 Conectar</button>
+          <button class="btn btn-outline" id="btn-sync-sheets" disabled>🔄 Sincronizar Agora</button>
+        </div>
+        <div id="sync-status" style="margin-top: 12px; font-size: 13px; color: var(--text-secondary);">
+          <span id="sync-status-text">Não conectado</span>
+        </div>
+      </div>
+
+      <!-- Data Management -->
+      <div class="settings-section">
+        <h3>Dados</h3>
+        <div class="export-area">
+          <button class="btn btn-primary" id="btn-export-csv">📥 Exportar CSV</button>
+          <button class="btn btn-primary" id="btn-export-json">📥 Exportar JSON</button>
+          <button class="btn btn-outline" id="btn-import-json">📤 Importar JSON</button>
+          <input type="file" id="import-file-input" accept=".json" hidden>
+        </div>
+      </div>
+
+      <!-- Reset -->
+      <div class="settings-section">
+        <button class="btn btn-danger" id="btn-reset-data">⚠️ Resetar Todos os Dados</button>
+      </div>
+
+      <!-- About -->
+      <div class="settings-section">
+        <h3>Sobre</h3>
+        <p>FinControl v2.0 — Controle Financeiro Pessoal</p>
+        <p>Dados sincronizados via Google Sheets + cache local</p>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ============================================================= -->
+  <!-- TOAST CONTAINER                                                -->
+  <!-- ============================================================= -->
+  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="true">
+    <!-- Toasts injected by JS -->
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- SCRIPTS                                                        -->
+  <!-- ============================================================= -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/lancamentos.js"></script>
+  <script src="js/contas.js"></script>
+  <script src="js/cartoes.js"></script>
+  <script src="js/patrimonio.js"></script>
+  <script src="js/metas.js"></script>
+  <script src="js/veiculo.js"></script>
+  <script src="js/relatorios.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
