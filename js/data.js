@@ -83,9 +83,9 @@
   // ----------------------------------------------------------
 
   var DEFAULT_ACCOUNTS = [
-    { id: generateId(), name: 'Itaú Principal', initialBalance: 1200, type: 'corrente' },
-    { id: generateId(), name: 'Itaú Secundária', initialBalance: 300, type: 'poupança' },
-    { id: generateId(), name: 'Nubank', initialBalance: 850, type: 'corrente' },
+    { id: generateId(), name: 'Itaú Principal', initialBalance: 0, type: 'corrente' },
+    { id: generateId(), name: 'Itaú Secundária', initialBalance: 0, type: 'poupança' },
+    { id: generateId(), name: 'Nubank', initialBalance: 0, type: 'corrente' },
   ];
 
   // ----------------------------------------------------------
@@ -141,7 +141,7 @@
     if (!existing) {
       var sample = buildSampleData();
       saveData(sample);
-      console.log('[DataManager] Initialised with sample data.');
+      console.log('[DataManager] Initialised with empty data.');
       return sample;
     }
     // Migrate: ensure all keys exist

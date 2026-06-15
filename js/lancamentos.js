@@ -197,6 +197,25 @@
     window.DataManager.addTransaction(transaction);
     showToast('Lançamento registrado! ✓', 'success');
 
+    // Sync to Google Sheets if connected
+    if (window.DataManager.isConnected()) {
+      window.DataManager.postToSheets('addTransaction', {
+        date: transaction.date,
+        type: transaction.type === 'receita' ? 'Receita' : 'Despesa',
+        category: transaction.category,
+        subcategory: transaction.subcategory || '',
+        amount: transaction.amount,
+        paymentMethod: transaction.paymentMethod,
+        account: transaction.account,
+        notes: transaction.notes || ''
+      }).then(function(r) {
+        if (r.success) console.log('[Sync] Lançamento enviado para planilha ✓');
+        else console.warn('[Sync] Falha ao enviar:', r.error);
+      }).catch(function(e) {
+        console.warn('[Sync] Erro de rede:', e.message);
+      });
+    }
+
     // Clear form but keep date and account
     if (amountInput) amountInput.value = '';
     if (notesInput) notesInput.value = '';
@@ -444,6 +463,25 @@
     } else {
       window.DataManager.addTransaction(txData);
       showToast('Lançamento registrado! ✓', 'success');
+
+      // Sync to Google Sheets if connected
+      if (window.DataManager.isConnected()) {
+        window.DataManager.postToSheets('addTransaction', {
+          date: txData.date,
+          type: txData.type === 'receita' ? 'Receita' : 'Despesa',
+          category: txData.category,
+          subcategory: txData.subcategory || '',
+          amount: txData.amount,
+          paymentMethod: txData.paymentMethod,
+          account: txData.account,
+          notes: txData.notes || ''
+        }).then(function(r) {
+          if (r.success) console.log('[Sync] Lançamento enviado para planilha ✓');
+          else console.warn('[Sync] Falha ao enviar:', r.error);
+        }).catch(function(e) {
+          console.warn('[Sync] Erro de rede:', e.message);
+        });
+      }
     }
 
     // Clear form

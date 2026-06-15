@@ -102,42 +102,7 @@ function criarAbaLancamentos(ss) {
   // Formato data
   sheet.getRange(2, 1, maxRows, 1).setNumberFormat('dd/MM/yyyy');
   
-  // Dados de exemplo
-  const hoje = new Date();
-  const exemplos = [
-    [new Date(2026, 3, 5), 'Receita', 'Estágio', '', 1550, 'Transferência', 'Itaú Principal', 'Salário estágio'],
-    [new Date(2026, 3, 8), 'Despesa', 'Alimentação', 'Restaurante', 42.50, 'Pix', 'Nubank', 'Almoço'],
-    [new Date(2026, 3, 10), 'Receita', 'Trabalho de Final de Semana', '', 250, 'Pix', 'Nubank', 'Diária sábado'],
-    [new Date(2026, 3, 12), 'Despesa', 'Combustível', '', 185, 'Cartão de Débito', 'Itaú Principal', 'Posto Shell'],
-    [new Date(2026, 3, 15), 'Despesa', 'Assinaturas', 'Streaming', 45.90, 'Cartão de Crédito', 'Nubank', 'Spotify+Netflix'],
-    [new Date(2026, 3, 18), 'Despesa', 'Amazon', '', 133.25, 'Cartão de Crédito', 'Itaú Principal', 'Parcela 4/6 Monitor'],
-    [new Date(2026, 3, 20), 'Despesa', 'Lazer', 'Cinema', 35, 'Pix', 'Nubank', ''],
-    [new Date(2026, 3, 22), 'Despesa', 'Compras', '', 89.90, 'Cartão de Crédito', 'Nubank', 'Camiseta'],
-    [new Date(2026, 3, 25), 'Despesa', 'Combustível', '', 178, 'Cartão de Débito', 'Itaú Principal', 'Posto Ipiranga'],
-    [new Date(2026, 3, 28), 'Despesa', 'Consumo Pessoal', '', 65, 'Pix', 'Nubank', ''],
-    [new Date(2026, 4, 5), 'Receita', 'Estágio', '', 1550, 'Transferência', 'Itaú Principal', 'Salário estágio'],
-    [new Date(2026, 4, 7), 'Despesa', 'Alimentação', 'Mercado', 156.30, 'Cartão de Débito', 'Itaú Principal', 'Compras do mês'],
-    [new Date(2026, 4, 10), 'Receita', 'Trabalho de Final de Semana', '', 500, 'Pix', 'Nubank', '2 diárias'],
-    [new Date(2026, 4, 13), 'Despesa', 'Combustível', '', 192, 'Cartão de Débito', 'Itaú Principal', ''],
-    [new Date(2026, 4, 15), 'Despesa', 'Assinaturas', 'Streaming', 45.90, 'Cartão de Crédito', 'Nubank', ''],
-    [new Date(2026, 4, 18), 'Despesa', 'Amazon', '', 133.25, 'Cartão de Crédito', 'Itaú Principal', 'Parcela 5/6 Monitor'],
-    [new Date(2026, 4, 20), 'Despesa', 'Transporte', 'Uber', 28.50, 'Pix', 'Nubank', ''],
-    [new Date(2026, 4, 25), 'Despesa', 'Combustível', '', 180, 'Cartão de Débito', 'Itaú Principal', ''],
-    [new Date(2026, 4, 27), 'Despesa', 'Lazer', 'Bar', 72, 'Pix', 'Nubank', 'Aniversário amigo'],
-    [new Date(2026, 4, 30), 'Despesa', 'Consumo Pessoal', '', 45, 'Pix', 'Nubank', ''],
-    [new Date(2026, 5, 5), 'Receita', 'Estágio', '', 1550, 'Transferência', 'Itaú Principal', 'Salário estágio'],
-    [new Date(2026, 5, 7), 'Despesa', 'Alimentação', 'Restaurante', 38.90, 'Pix', 'Nubank', ''],
-    [new Date(2026, 5, 8), 'Receita', 'Trabalho de Final de Semana', '', 250, 'Pix', 'Nubank', 'Diária'],
-    [new Date(2026, 5, 12), 'Despesa', 'Combustível', '', 188, 'Cartão de Débito', 'Itaú Principal', ''],
-    [new Date(2026, 5, 15), 'Despesa', 'Assinaturas', 'Streaming', 45.90, 'Cartão de Crédito', 'Nubank', ''],
-    [new Date(2026, 5, 18), 'Despesa', 'Amazon', '', 133.25, 'Cartão de Crédito', 'Itaú Principal', 'Parcela 6/6 Monitor FINAL'],
-    [new Date(2026, 5, 20), 'Despesa', 'Saúde', 'Farmácia', 32.50, 'Pix', 'Nubank', ''],
-    [new Date(2026, 5, 22), 'Despesa', 'Compras', 'Eletrônicos', 149.90, 'Cartão de Crédito', 'Nubank', 'Fone bluetooth'],
-  ];
-  
-  if (exemplos.length > 0) {
-    sheet.getRange(2, 1, exemplos.length, headers.length).setValues(exemplos);
-  }
+  // Sem dados de exemplo — aba inicia vazia
   
   // Colorir receitas/despesas (formatação condicional)
   const tipoRange = sheet.getRange(2, 2, maxRows, 1);
@@ -240,9 +205,7 @@ function criarAbaParcelamentos(ss) {
     .requireValueInList(['Cartão Itaú', 'Cartão Nubank'], true).build();
   sheet.getRange(2, 2, 500, 1).setDataValidation(cartaoRule);
   
-  // Exemplo Amazon
-  const exemplo = [['Monitor Amazon', 'Cartão Itaú', 799.50, 6, 6, 133.25, new Date(2025, 8, 1), new Date(2026, 1, 1), 'Amazon']];
-  sheet.getRange(2, 1, 1, headers.length).setValues(exemplo);
+  // Sem dados de exemplo — aba inicia vazia
   
   sheet.getRange(2, 3, 500, 1).setNumberFormat('R$ #.##0,00');
   sheet.getRange(2, 6, 500, 1).setNumberFormat('R$ #.##0,00');
@@ -260,12 +223,7 @@ function criarAbaPatrimonio(ss) {
   sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
   sheet.getRange(1, 1, 1, headers.length).setBackground('#1e293b').setFontColor('#f8fafc').setFontWeight('bold');
   
-  const data = [
-    ['2026-04', 4800],
-    ['2026-05', 5050],
-    ['2026-06', 5280]
-  ];
-  sheet.getRange(2, 1, data.length, headers.length).setValues(data);
+  // Sem dados de exemplo — aba inicia vazia
   sheet.getRange(2, 2, 500, 1).setNumberFormat('R$ #.##0,00');
   sheet.setFrozenRows(1);
 }
@@ -279,13 +237,7 @@ function criarAbaMetas(ss) {
   sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
   sheet.getRange(1, 1, 1, headers.length).setBackground('#1e293b').setFontColor('#f8fafc').setFontWeight('bold');
   
-  const data = [
-    ['Reserva de Emergência', 5000, 2500, '2026-12', '🛡️', '#10b981'],
-    ['Fundo para Veículo', 25000, 1500, '2028-06', '🚗', '#6366f1'],
-    ['Fundo para Oportunidades', 3000, 800, '2027-06', '🎯', '#f59e0b'],
-    ['Fundo para Tecnologia', 2000, 480, '2027-03', '💻', '#06b6d4']
-  ];
-  sheet.getRange(2, 1, data.length, headers.length).setValues(data);
+  // Sem dados de exemplo — aba inicia vazia
   sheet.getRange(2, 2, 500, 1).setNumberFormat('R$ #.##0,00');
   sheet.getRange(2, 3, 500, 1).setNumberFormat('R$ #.##0,00');
   
